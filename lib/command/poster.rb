@@ -14,6 +14,14 @@ module Command
           http.request(req)
         end
       end
+      def get_issues()
+        uri = URI.parse("https://api.github.com")
+        http = Net::HTTP.new(uri.host, uri.port)
+        req = Net::HTTP::Get.new("/repos/octocat/Hello-World/issues")
+        http.use_ssl = true
+        resp = http.request(req)
+        resp
+      end
     end
   end
 end

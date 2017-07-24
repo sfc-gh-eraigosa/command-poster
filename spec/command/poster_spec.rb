@@ -5,7 +5,7 @@ RSpec.describe Command::Poster do
     @client = Command::Poster::Runner.new
   end
 
-  context 'when happy path' do
+  context '#run' do
     let (:result_code) { "200" }
     let (:result_body) { "{\"result\":\"works\"}" }
     before do
@@ -27,6 +27,16 @@ RSpec.describe Command::Poster do
     it "gets a good body" do
       request = @client.run('foo')
       expect(request.body).to eq(result_body)
+    end
+
+  end
+
+  context '#get_issues' do
+    let (:result_code) { "200" }
+
+    it 'has good return code' do
+      request = @client.get_issues
+      expect(request.code).to eq(result_code)
     end
   end
 
