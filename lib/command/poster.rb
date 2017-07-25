@@ -10,6 +10,7 @@ module Command
         Client.new('http://example.com')
               .POST({foo: string})
       end
+
       def get_issues()
         Client.new('https://api.github.com')
               .GET('/repos/octocat/Hello-World/issues')
