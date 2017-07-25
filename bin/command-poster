@@ -12,5 +12,7 @@ require "command/poster"
 
 # require "irb"
 # IRB.start(__FILE__)
-result = Command::Poster::Runner.new.run('foo')
-puts result.code
+# result = Command::Poster::Runner.new.run('foo')
+# puts result.code
+
+Command::Poster::Runner.new.try_issues

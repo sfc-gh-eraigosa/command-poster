@@ -1,15 +1,12 @@
 # Command::Poster
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/command/poster`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is a demo gem for working with vcr and webmock.  I'm using the github api issues to excercise the simple client and methods.
+It's called command poster for no particular reason.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
 ```ruby
-gem 'command-poster'
+bundle install
 ```
 
 And then execute:
@@ -20,9 +17,13 @@ Or install it yourself as:
 
     $ gem install command-poster
 
+You can also trouble shoot locally with:
+
+    $ ruby bin/command-poster
+
 ## Usage
 
-TODO: Write usage instructions here
+We don't really do much other than list issues on a default project.
 
 ## Development
 

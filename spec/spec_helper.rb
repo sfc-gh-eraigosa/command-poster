@@ -8,7 +8,7 @@ WebMock.disable_net_connect!(:allow_localhost => true)
 VCR.configure do |c|
   c.cassette_library_dir = 'fixtures/vcr_cassettes'
   c.hook_into :webmock
-  c.ignore_hosts 'api.github.com'
+  # c.ignore_hosts 'api.github.com'
 end
 
 RSpec.configure do |config|

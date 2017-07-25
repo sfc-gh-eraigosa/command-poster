@@ -1,26 +1,25 @@
-require 'uri'
-require 'net/http'
-require 'json'
 require "command/poster/version"
+require "command/poster/client"
+require "command/github/issues"
 
 module Command
   module Poster
     class Runner
+
       def run(string)
-        uri = URI('http://example.com')
-        req = Net::HTTP::Post.new(uri, initheader = {'Content-Type' =>'application/json'})
-        req.body = { foo: string }.to_json
-        Net::HTTP.start(uri.hostname, uri.port) do |http|
-          http.request(req)
-        end
+        Client.new('http://example.com')
+              .POST({foo: string})
       end
       def get_issues()
-        uri = URI.parse("https://api.github.com")
-        http = Net::HTTP.new(uri.host, uri.port)
-        req = Net::HTTP::Get.new("/repos/octocat/Hello-World/issues")
-        http.use_ssl = true
-        resp = http.request(req)
-        resp
+        Client.new('https://api.github.com')
+              .GET('/repos/octocat/Hello-World/issues')
+      end
+
+      def try_issues()
+        issues = Command::GitHub::Issues.new('octocat', 'Hello-World')
+        issues.list_titles.each do |title|
+          puts title
+        end
       end
     end
   end

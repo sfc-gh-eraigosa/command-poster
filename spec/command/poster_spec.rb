@@ -35,8 +35,10 @@ RSpec.describe Command::Poster do
     let (:result_code) { "200" }
 
     it 'has good return code' do
-      request = @client.get_issues
-      expect(request.code).to eq(result_code)
+      VCR.use_cassette('command-poster-get_issues') do
+        request = @client.get_issues
+        expect(request.code).to eq(result_code)
+      end
     end
   end
 
