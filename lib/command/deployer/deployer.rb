@@ -26,7 +26,7 @@ module Command
       def command_parsing(string)
         words = []
         json = {}
-
+# tip parse with http://rubular.com/
         case string
           when /(hubot)\s(deploy)\s(.*)\/(.*)\s(to)\s(.*)\/(.*)/ then
             self.command   = $2
