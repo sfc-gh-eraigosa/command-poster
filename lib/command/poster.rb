@@ -1,6 +1,7 @@
 require "command/poster/version"
 require "command/poster/client"
 require "command/github/issues"
+require "command/deployer/deployer"
 
 module Command
   module Poster
