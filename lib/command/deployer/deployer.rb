@@ -43,6 +43,12 @@ module Command
             self.command   = $2
             self.app       = $3
             self.env       = $5
+          else
+            self.command = nil
+            self.app = nil
+            self.branch = nil
+            self.env = nil
+            self.instances = nil
         end
 
         json = json.merge({ "command" => self.command }) unless self.command == nil
