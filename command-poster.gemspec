@@ -34,6 +34,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "webmock", "~> 3.0"
   spec.add_development_dependency "vcr", "~> 3.0"
+  spec.add_development_dependency "sinatra", "~> 2.0"
+
   spec.add_development_dependency "coveralls"
 
   spec.add_dependency "json", "~> 2.1"

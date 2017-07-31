@@ -2,6 +2,7 @@ require "bundler/setup"
 require "command/poster"
 require 'webmock/rspec'
 require 'vcr'
+require 'support/fake_deployer'
 
 WebMock.disable_net_connect!(:allow_localhost => true)
 

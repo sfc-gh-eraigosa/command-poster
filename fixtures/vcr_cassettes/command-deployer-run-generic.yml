@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://myappsite.com/deployments
+    uri: https://myappsite.com/
     body:
       encoding: UTF-8
-      string: '{"app":"github","environment":"production"}'
+      string: '{"command":"deploy","app":"github","env":"production"}'
     headers:
       Content-Type:
       - application/json
