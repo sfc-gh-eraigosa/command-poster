@@ -23,6 +23,13 @@ module Command
         true
       end
 
+      # GET /deployments/:app/:branch/buildstatus
+      # determine what the current build status is for the deployment
+      def get_branch_build_status
+        resp = self.GET("/#{self.app}/#{self.branch}/buildstatus")
+        resp.code
+      end
+
 # 1. https://gist.github.com/timothywellsjr/0c7a69ead8ac9c66e9d131ef3d48be79
 # 2. https://gist.github.com/timothywellsjr/36265964844812d694b3f768ac084bfc
 # 3. https://gist.github.com/timothywellsjr/cfbf8204d981071bdecebf82c1d31850

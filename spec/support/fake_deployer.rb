@@ -11,9 +11,12 @@ class FakeDeployer < Sinatra::Base
       status 200
     when /deploy:github:staging:mybranch/ # for test run.2
       status 200
+    when /migrate:github:staging:mybranch/ # for test run.3
+      status 200
     else
       status 300
     end
     data.to_json
   end
+
 end

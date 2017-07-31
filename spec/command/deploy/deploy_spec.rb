@@ -12,6 +12,12 @@ RSpec.describe Command::Deploy do
     #    to_return(status: 200, body: "done", headers: {})
   end
 
+  it '#get_branch_build_status 5. should get status' do
+    @deployer.app = 'github'
+    @deployer.branch = 'mybranch'
+    expect(@deployer.get_branch_build_status).to eq "200" 
+  end
+
   it '#run 1. hutbot deploy github to production' do
     ret = @deployer.run("hubot deploy github to production")
     expect(ret).to be true
