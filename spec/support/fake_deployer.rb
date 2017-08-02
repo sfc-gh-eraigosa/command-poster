@@ -36,6 +36,10 @@ class FakeDeployer < Sinatra::Base
     case data
     when /github:mybranch_422/ # checking for 422 error
       status 422
+    when /github:mybranch_409/ # checking for 409 error
+      status 409
+    when /github:mybranch_204/ # checking for 204 error
+      status 204
     when /github:mybranch/ # for test run.5
       status 200
     else

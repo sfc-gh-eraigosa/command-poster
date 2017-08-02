@@ -32,6 +32,11 @@ RSpec.describe Command::Deploy do
     expect(ret).to be true
   end
 
+  it '#run 4. hubot deploy github/github to production/github-staff1,github-fe136' do
+    ret = @deployer.run("hubot deploy github/github to production/github-staff1,github-fe136")
+    expect(ret).to be true
+  end
+
   it '#get_branch_build_status 5. should get status' do
     @deployer.command = 'deploy'
     @deployer.env = 'staging'
@@ -54,6 +59,23 @@ RSpec.describe Command::Deploy do
   it '#run 5. hubot deploy github/mybranch_422 to production' do
     ret = @deployer.run("hubot deploy github/mybranch_422 to production")
     expect(ret).to be false
+  end
+
+  it '#run 6. hubot deploy github/mybranch to production' do
+    ret = @deployer.run("hubot deploy github/mybranch to production")
+    expect(ret).to be true
+  end
+
+  it '#get_branch_build_status 6. handles 204 error' do
+    @deployer.app = 'github'
+    @deployer.branch = 'mybranch_204'
+    expect(@deployer.get_branch_build_status).to eq "204"
+  end
+
+  it '#get_branch_build_status 6. handles 409 error' do
+    @deployer.app = 'github'
+    @deployer.branch = 'mybranch_409'
+    expect(@deployer.get_branch_build_status).to eq "409"
   end
 
   it '#deployer should not be empty' do
