@@ -6,7 +6,8 @@ class FakeDeployer < Sinatra::Base
     request.body.rewind
     data = JSON.parse request.body.read
     content_type :json
-    case "#{data['command']}:#{data['app']}:#{data['env']}:#{data['branch']}"
+    data = "#{data['command']}:#{data['app']}:#{data['env']}:#{data['branch']}"
+    case data
     when /deploy:github:production:/ # for test run.1
       status 200
     when /deploy:github:staging:mybranch/ # for test run.2
@@ -17,6 +18,19 @@ class FakeDeployer < Sinatra::Base
       status 300
     end
     data.to_json
+  end
+
+  get '/:app/:branch/buildstatus' do
+    data = "#{params['app']}:#{params['branch']}"
+    case data
+    when /github:mybranch_422/ # checking for 422 error
+      status 422
+    when /github:mybranch/ # for test run.5
+      status 200
+    else
+      status 300
+    end
+    status
   end
 
 end

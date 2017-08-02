@@ -12,12 +12,6 @@ RSpec.describe Command::Deploy do
     #    to_return(status: 200, body: "done", headers: {})
   end
 
-  it '#get_branch_build_status 5. should get status' do
-    @deployer.app = 'github'
-    @deployer.branch = 'mybranch'
-    expect(@deployer.get_branch_build_status).to eq "200" 
-  end
-
   it '#run 1. hutbot deploy github to production' do
     ret = @deployer.run("hubot deploy github to production")
     expect(ret).to be true
@@ -36,6 +30,20 @@ RSpec.describe Command::Deploy do
   it '#run 3. hubot migrate github/mybranch to staging' do
     ret = @deployer.run("hubot migrate github/mybranch to staging")
     expect(ret).to be true
+  end
+
+  it '#get_branch_build_status 5. should get status' do
+    @deployer.command = 'deploy'
+    @deployer.env = 'staging'
+    @deployer.app = 'github'
+    @deployer.branch = 'mybranch'
+    expect(@deployer.get_branch_build_status).to eq "200"
+  end
+
+  it '#get_branch_build_status 5. handles 422 error' do
+    @deployer.app = 'github'
+    @deployer.branch = 'mybranch_422'
+    expect(@deployer.get_branch_build_status).to eq "422"
   end
 
   it '#deployer should not be empty' do
