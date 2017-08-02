@@ -20,6 +20,17 @@ class FakeDeployer < Sinatra::Base
     data.to_json
   end
 
+  get '/:app/buildstatus' do
+    data = "#{params['app']}"
+    case data
+    when /github/
+      status 200
+    else
+      status 200
+    end
+    status
+  end
+
   get '/:app/:branch/buildstatus' do
     data = "#{params['app']}:#{params['branch']}"
     case data
@@ -28,7 +39,7 @@ class FakeDeployer < Sinatra::Base
     when /github:mybranch/ # for test run.5
       status 200
     else
-      status 300
+      status 200
     end
     status
   end

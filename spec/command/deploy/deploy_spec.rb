@@ -46,6 +46,16 @@ RSpec.describe Command::Deploy do
     expect(@deployer.get_branch_build_status).to eq "422"
   end
 
+  it '#run 5. hubot deploy github/mybranch to production' do
+    ret = @deployer.run("hubot deploy github/mybranch to production")
+    expect(ret).to be true
+  end
+
+  it '#run 5. hubot deploy github/mybranch_422 to production' do
+    ret = @deployer.run("hubot deploy github/mybranch_422 to production")
+    expect(ret).to be false
+  end
+
   it '#deployer should not be empty' do
     expect(@deployer).not_to be nil
   end

@@ -16,6 +16,10 @@ module Command
 
       def run(string)
         json_body = self.command_parsing(string)
+        data = get_branch_build_status
+        unless data =~ /20./
+          return false
+        end
         resp = self.POST(json_body)
         unless resp.code =~ /20./
           return false
@@ -26,7 +30,12 @@ module Command
       # GET /deployments/:app/:branch/buildstatus
       # determine what the current build status is for the deployment
       def get_branch_build_status
-        resp = self.GET("/#{self.app}/#{self.branch}/buildstatus")
+        resp = nil
+        if self.branch != nil
+          resp = self.GET("/#{self.app}/#{self.branch}/buildstatus")
+        else
+          resp = self.GET("/#{self.app}/buildstatus")
+        end
         resp.code
       end
 
